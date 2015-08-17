@@ -61,7 +61,7 @@ define(['exports', '../validation/utilities', '../validation/validation-locale']
                   };
                 } else {
                   if (!previousRuleResult.isValid) {
-                    throw Error('ValidationRulesCollection.validate caught an unexpected result while validating it\'s chain of rules.');
+                    throw Error("ValidationRulesCollection.validate caught an unexpected result while validating it's chain of rules.");
                   }
                   return previousRuleResult;
                 }
@@ -90,7 +90,7 @@ define(['exports', '../validation/utilities', '../validation/validation-locale']
     };
 
     ValidationRulesCollection.prototype.addValidationRule = function addValidationRule(validationRule) {
-      if (validationRule.validate === undefined) throw new Error('That\'s not a valid validationRule');
+      if (validationRule.validate === undefined) throw new Error("That's not a valid validationRule");
       this.validationRules.push(validationRule);
     };
 
@@ -137,7 +137,7 @@ define(['exports', '../validation/utilities', '../validation/validation-locale']
     };
 
     SwitchCaseValidationRulesCollection.prototype.getCurrentCollection = function getCurrentCollection(caseLabel) {
-      var createIfNotExists = arguments[1] === undefined ? false : arguments[1];
+      var createIfNotExists = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
 
       if (caseLabel === this.defaultCaseLabel) return this.defaultCollection;
       var currentCollection = null;

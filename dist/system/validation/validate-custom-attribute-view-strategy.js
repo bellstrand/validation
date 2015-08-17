@@ -3,7 +3,7 @@ System.register([], function (_export) {
 
   var ValidateCustomAttributeViewStrategyBase, TWBootstrapViewStrategy, ValidateCustomAttributeViewStrategy;
 
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
@@ -50,6 +50,8 @@ System.register([], function (_export) {
       _export('ValidateCustomAttributeViewStrategyBase', ValidateCustomAttributeViewStrategyBase);
 
       TWBootstrapViewStrategy = (function (_ValidateCustomAttributeViewStrategyBase) {
+        _inherits(TWBootstrapViewStrategy, _ValidateCustomAttributeViewStrategyBase);
+
         function TWBootstrapViewStrategy(appendMessageToInput, appendMessageToLabel, helpBlockClass) {
           _classCallCheck(this, TWBootstrapViewStrategy);
 
@@ -58,8 +60,6 @@ System.register([], function (_export) {
           this.appendMessageToLabel = appendMessageToLabel;
           this.helpBlockClass = helpBlockClass;
         }
-
-        _inherits(TWBootstrapViewStrategy, _ValidateCustomAttributeViewStrategyBase);
 
         TWBootstrapViewStrategy.prototype.searchFormGroup = function searchFormGroup(currentElement, currentDepth) {
           if (currentDepth === 5) {
@@ -81,7 +81,7 @@ System.register([], function (_export) {
           if (currentDepth === 5) {
             return;
           }
-          if (currentElement.nodeName === 'LABEL' && (currentElement.attributes['for'] && currentElement.attributes['for'].value === inputId || !currentElement.attributes['for'])) {
+          if (currentElement.nodeName === "LABEL" && (currentElement.attributes['for'] && currentElement.attributes['for'].value === inputId || !currentElement.attributes['for'])) {
             currentLabels.push(currentElement);
           }
 
@@ -101,7 +101,7 @@ System.register([], function (_export) {
           }
 
           if (!helpBlock) {
-            helpBlock = document.createElement('p');
+            helpBlock = document.createElement("p");
             helpBlock.classList.add('help-block');
             helpBlock.classList.add(this.helpBlockClass);
 

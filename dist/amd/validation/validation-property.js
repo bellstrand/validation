@@ -45,7 +45,7 @@ define(['exports', '../validation/validation-rules-collection', '../validation/p
     }
 
     ValidationProperty.prototype.addValidationRule = function addValidationRule(validationRule) {
-      if (validationRule.validate === undefined) throw new Error('That\'s not a valid validationRule');
+      if (validationRule.validate === undefined) throw new Error("That's not a valid validationRule");
       this.collectionOfValidationRules.addValidationRule(validationRule);
       this.validateCurrentValue(false);
     };
@@ -73,11 +73,11 @@ define(['exports', '../validation/validation-rules-collection', '../validation/p
             if (_this2.latestValue === validationResponse.latestValue) _this2.propertyResult.setValidity(validationResponse, shouldBeDirty);
             return validationResponse.isValid;
           })['catch'](function (err) {
-            console.log('Unexpected behavior: a validation-rules-collection should always fulfil', err);
-            throw Error('Unexpected behavior: a validation-rules-collection should always fulfil');
+            console.log("Unexpected behavior: a validation-rules-collection should always fulfil", err);
+            throw Error("Unexpected behavior: a validation-rules-collection should always fulfil");
           });
         }, function () {
-          throw Error('An exception occurred while trying to load the locale');
+          throw Error("An exception occurred while trying to load the locale");
         });
       }
     };

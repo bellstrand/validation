@@ -24,7 +24,7 @@ define(['exports'], function (exports) {
       if (val === null) {
         return true;
       }
-      if (val === '') {
+      if (val === "") {
         return true;
       }
       if (typeof val === 'string') {

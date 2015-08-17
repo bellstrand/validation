@@ -4,7 +4,7 @@ define(['exports', './validation/validation-config', './validation/validation', 
   exports.__esModule = true;
   exports.configure = configure;
 
-  function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+  function _interopExportWildcard(obj, defaults) { var newObj = defaults({}, obj); delete newObj['default']; return newObj; }
 
   function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 
@@ -12,9 +12,9 @@ define(['exports', './validation/validation-config', './validation/validation', 
   exports.ValidationConfig = _validationValidationConfig.ValidationConfig;
   exports.ValidationLocale = _validationValidationLocale.ValidationLocale;
 
-  _defaults(exports, _interopRequireWildcard(_validationValidationResult));
+  _defaults(exports, _interopExportWildcard(_validationValidationResult, _defaults));
 
-  _defaults(exports, _interopRequireWildcard(_validationValidationRules));
+  _defaults(exports, _interopExportWildcard(_validationValidationRules, _defaults));
 
   exports.Validation = _validationValidation.Validation;
   exports.ValidateCustomAttribute = _validationValidateCustomAttribute.ValidateCustomAttribute;
@@ -22,13 +22,13 @@ define(['exports', './validation/validation-config', './validation/validation', 
   exports.ValidateCustomAttributeViewStrategyBase = _validationValidateCustomAttributeViewStrategy.ValidateCustomAttributeViewStrategyBase;
   exports.ensure = _validationDecorators.ensure;
 
-  function configure(aurelia, configCallback) {
+  function configure(frameworkConfig, configCallback) {
 
-    aurelia.globalizeResources('./validation/validate-custom-attribute');
+    frameworkConfig.globalResources('./validation/validate-custom-attribute');
     if (configCallback !== undefined && typeof configCallback === 'function') {
       configCallback(_validationValidation.Validation.defaults);
     }
-    aurelia.withSingleton(_validationValidationConfig.ValidationConfig, _validationValidation.Validation.defaults);
+    frameworkConfig.singleton(_validationValidationConfig.ValidationConfig, _validationValidation.Validation.defaults);
     return _validationValidation.Validation.defaults.locale();
   }
 });

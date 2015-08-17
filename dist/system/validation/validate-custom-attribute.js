@@ -21,19 +21,17 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating'], function
           this.viewStrategy = null;
         }
 
-        var _ValidateCustomAttribute = ValidateCustomAttribute;
-
-        _ValidateCustomAttribute.prototype.valueChanged = function valueChanged(newValue) {
+        ValidateCustomAttribute.prototype.valueChanged = function valueChanged(newValue) {
           if (this.value === null || this.value === undefined) return;
           this.processedValidation = this.value;
           if (typeof this.value === 'string') {
             return;
           } else {
-            this.subscribeChangedHandlers(this.element);
-          }
+              this.subscribeChangedHandlers(this.element);
+            }
         };
 
-        _ValidateCustomAttribute.prototype.subscribeChangedHandlers = function subscribeChangedHandlers(currentElement) {
+        ValidateCustomAttribute.prototype.subscribeChangedHandlers = function subscribeChangedHandlers(currentElement) {
           var _this = this;
 
           this.viewStrategy = this.value.config.getViewStrategy();
@@ -50,12 +48,13 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating'], function
           }
         };
 
-        _ValidateCustomAttribute.prototype.detached = function detached() {};
+        ValidateCustomAttribute.prototype.detached = function detached() {};
 
-        _ValidateCustomAttribute.prototype.attached = function attached() {
+        ValidateCustomAttribute.prototype.attached = function attached() {
           if (this.processedValidation === null || this.processedValidation === undefined) this.valueChanged(this.value);
         };
 
+        var _ValidateCustomAttribute = ValidateCustomAttribute;
         ValidateCustomAttribute = inject(Element)(ValidateCustomAttribute) || ValidateCustomAttribute;
         ValidateCustomAttribute = customAttribute('validate')(ValidateCustomAttribute) || ValidateCustomAttribute;
         return ValidateCustomAttribute;

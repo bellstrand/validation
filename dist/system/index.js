@@ -5,13 +5,13 @@ System.register(['./validation/validation-config', './validation/validation', '.
 
   _export('configure', configure);
 
-  function configure(aurelia, configCallback) {
+  function configure(frameworkConfig, configCallback) {
 
-    aurelia.globalizeResources('./validation/validate-custom-attribute');
+    frameworkConfig.globalResources('./validation/validate-custom-attribute');
     if (configCallback !== undefined && typeof configCallback === 'function') {
       configCallback(Validation.defaults);
     }
-    aurelia.withSingleton(ValidationConfig, Validation.defaults);
+    frameworkConfig.singleton(ValidationConfig, Validation.defaults);
     return Validation.defaults.locale();
   }
 
@@ -30,11 +30,11 @@ System.register(['./validation/validation-config', './validation/validation', '.
       _export('ValidationLocale', _validationValidationLocale.ValidationLocale);
     }, function (_validationValidationResult) {
       for (var _key in _validationValidationResult) {
-        _export(_key, _validationValidationResult[_key]);
+        if (_key !== 'default') _export(_key, _validationValidationResult[_key]);
       }
     }, function (_validationValidationRules) {
       for (var _key2 in _validationValidationRules) {
-        _export(_key2, _validationValidationRules[_key2]);
+        if (_key2 !== 'default') _export(_key2, _validationValidationRules[_key2]);
       }
     }, function (_validationValidateCustomAttribute) {
       _export('ValidateCustomAttribute', _validationValidateCustomAttribute.ValidateCustomAttribute);

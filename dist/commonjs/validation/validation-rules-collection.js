@@ -64,7 +64,7 @@ var ValidationRulesCollection = (function () {
                 };
               } else {
                 if (!previousRuleResult.isValid) {
-                  throw Error('ValidationRulesCollection.validate caught an unexpected result while validating it\'s chain of rules.');
+                  throw Error("ValidationRulesCollection.validate caught an unexpected result while validating it's chain of rules.");
                 }
                 return previousRuleResult;
               }
@@ -93,7 +93,7 @@ var ValidationRulesCollection = (function () {
   };
 
   ValidationRulesCollection.prototype.addValidationRule = function addValidationRule(validationRule) {
-    if (validationRule.validate === undefined) throw new Error('That\'s not a valid validationRule');
+    if (validationRule.validate === undefined) throw new Error("That's not a valid validationRule");
     this.validationRules.push(validationRule);
   };
 
@@ -140,7 +140,7 @@ var SwitchCaseValidationRulesCollection = (function () {
   };
 
   SwitchCaseValidationRulesCollection.prototype.getCurrentCollection = function getCurrentCollection(caseLabel) {
-    var createIfNotExists = arguments[1] === undefined ? false : arguments[1];
+    var createIfNotExists = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
 
     if (caseLabel === this.defaultCaseLabel) return this.defaultCollection;
     var currentCollection = null;

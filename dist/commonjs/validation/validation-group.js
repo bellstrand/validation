@@ -88,8 +88,8 @@ var ValidationGroup = (function () {
   ValidationGroup.prototype.validate = function validate() {
     var _this3 = this;
 
-    var forceDirty = arguments[0] === undefined ? true : arguments[0];
-    var forceExecution = arguments[1] === undefined ? true : arguments[1];
+    var forceDirty = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+    var forceExecution = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
     this.isValidating = true;
     var promise = Promise.resolve(true);
@@ -105,8 +105,8 @@ var ValidationGroup = (function () {
       _loop(i);
     }
     promise = promise['catch'](function () {
-      console.log('Should never get here: a validation property should always resolve to true/false!');
-      throw Error('Should never get here: a validation property should always resolve to true/false!');
+      console.log("Should never get here: a validation property should always resolve to true/false!");
+      throw Error("Should never get here: a validation property should always resolve to true/false!");
     });
 
     this.onValidateCallbacks.forEach(function (onValidateCallback) {
